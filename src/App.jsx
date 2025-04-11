@@ -1,12 +1,31 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import Layout from "./components/layout/Layout.jsx";
+import "./styles/global.scss";
+import LoginPage from "./pages/LoginPage/";
+import RequireAuth from "./components/auth/RequireAuth.jsx";
+import PersistLogin from "./components/auth/PersistLogin.jsx";
+import Missing from "./pages/404.jsx";
+import Dashboard from "./pages/Dashboard/index.jsx";
 
 function App() {
-  const [count, setCount] = useState(0);
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route element={<PersistLogin />}>
+          <Route path="/login" element={<LoginPage />} />
 
-  return <></>;
+          <Route element={<RequireAuth />}>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Navigate to="dashboard" replace />} />
+
+              <Route path="dashboard" element={<Dashboard />} />
+            </Route>
+          </Route>
+        </Route>
+        <Route path="*" element={<Missing />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
