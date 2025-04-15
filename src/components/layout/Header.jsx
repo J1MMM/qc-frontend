@@ -21,18 +21,18 @@ const headerContainerStyle = {
   padding: "8px 24px",
   boxSizing: "border-box",
   borderRadius: 0,
-  bgcolor: "primary.main",
+  // bgcolor: "primary.main",
 };
 
 export const Header = (props) => {
   return (
-    <Paper sx={headerContainerStyle}>
+    <Box sx={headerContainerStyle}>
       <Stack direction="row" alignItems="center">
         {/* <img src={logo} width={65} /> */}
         <Typography variant="h6" fontWeight={600} color="#FFF">
-          Qckkkkkk Qntttttttt
+          Quick Count
         </Typography>
       </Stack>
-    </Paper>
+    </Box>
   );
 };
